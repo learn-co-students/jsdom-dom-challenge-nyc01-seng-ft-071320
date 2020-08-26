@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setInterval(function(){
           counter.textContent++;
         }, 1000);
-    }     
-    counterUp()
+    }
+
     function clickHandler() {
         document.addEventListener('click', function(e){
             // console.log(e.target)
@@ -43,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }) 
       }
 
+    //   function pauseHandler() {
+    //     document.addEventListener('click', function(e){
+    //         if (e.target.matches('#pause')){
+                        
+    //         }
+    //     })
+    // }
+      counterUp()
       clickHandler()
-
+    // pauseHandler()
+    
 })
