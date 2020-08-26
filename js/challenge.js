@@ -29,15 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prevSecond === seconds) {
           let lastLikeSent = likesContainer.lastChild.textContent.split(' ')
           let lastLikeNum = parseInt(lastLikeSent[4])
-          debugger
-          lastLikeNum++
-          let incrementedNumber = lastLikeNum
-          lastLikeSent[4] = incrementedNumber
+          lastLikeNum+=1
+          lastLikeSent[4] = lastLikeNum
           lastLikeSent =  lastLikeSent.join(" ");
-          
-
           likesContainer.lastChild.innerText = lastLikeSent
-          likesContainer.append(li)
+          //likesContainer.append(li)
         } else {
           li.innerText = `${seconds} has been liked ${likesNum} times.`
           likesContainer.append(li)
