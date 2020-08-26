@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", e => {
                 for (let i = 0; i < clickables.length; i++) {
                     clickables[i].disabled = false
                 }
-                pauseBtn.removeEventListener
+
                 pauseBtn.addEventListener('click', pauseTimer())
             })
         }
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", e => {
                 for (let i = 0; i < clickables.length; i++) {
                     clickables[i].disabled = true
                 }
-                pauseBtn.removeEventListener
+
                 resumeBtn = document.getElementById("pause").disabled = false
                 pauseBtn.addEventListener('click', resumeTimer())
             })
