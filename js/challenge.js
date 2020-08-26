@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", function(e){
   
   let startTime = Date.now()
+  let elapsedTime = 0
 
   const counter = document.querySelector("#counter")
     let timeout
 
   function countUp() {
-    const d = new Date(Date.now() - startTime)
+    const d = new Date(Date.now() - startTime + elapsedTime)
     const s = d.getSeconds()
     counter.innerText = s
     timeout = setTimeout(() => {
@@ -60,19 +61,21 @@ document.addEventListener("DOMContentLoaded", function(e){
     
     function pauseEverything(){ 
         clearTimeout(timeout)
+        elapsedTime += Date.now() - startTime
         pauseButton.innerText = "resume"
-        buttons[0].disabled = "true"
-        buttons[1].disabled = "true"
-        buttons[2].disabled = "true"}
+        buttons[0].disabled = true
+        buttons[1].disabled = true
+        buttons[2].disabled = true
+      }
 
     function resumeEverything() {
         let currentSecond = parseInt(counter.innerText, 10)
-        startTime = Date.now()
+        startTime = new Date(Date.now() - currentSecond)
         countUp()
         pauseButton.innerText = "pause"
-        buttons[0].disabled = "false"
-        buttons[1].disabled = "false"
-        buttons[2].disabled = "false"
+        buttons[0].disabled = false
+        buttons[1].disabled = false
+        buttons[2].disabled = false
     }
 
 
@@ -81,7 +84,17 @@ document.addEventListener("DOMContentLoaded", function(e){
             else {resumeEverything()}
         })
     
-
+    const commentForm = document.querySelector('#comment-form')
+    commentForm.addEventListener('submit', function(e) {
+      e.preventDefault()
+      const input = document.querySelector('#comment-input')
+      const commentDiv = document.querySelector('#list')
+      const commentUl = document.createElement('ul')
+      commentDiv.append(commentUl)
+      const commentLi = document.createElement('li')
+      commentUl.append(commentLi)
+      commentLi.innerText = input.value
+    })
 
 })
 
