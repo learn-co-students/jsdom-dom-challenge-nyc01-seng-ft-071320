@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", e => {
         counterTime = parseInt(counterTime, 10);
         document.getElementById('counter').textContent = counterTime + 1
     }
-    setInterval(incrementCounter, 1000)
+    let myVar = setInterval(incrementCounter, 1000)
 
 
     let plus = document.getElementById("plus")
@@ -37,5 +37,62 @@ document.addEventListener("DOMContentLoaded", e => {
             ul.append(like)
         }
     }
+
     document.getElementById('heart').addEventListener("click", addLike)
+
+    let pauseBtn = document.querySelector('#pause')
+    pauseBtn.dataset.onSwitch = "true"
+    clickables = document.getElementsByTagName("button")
+    function resumeTimer() {
+        if (pauseBtn.dataset.onSwitch === "false") {
+            pauseBtn.addEventListener("click", e => {
+                // clearTimeout(incrementCounter)
+
+                // clearInterval(myVar)
+                myVar = setInterval(incrementCounter, 1000)
+                pauseBtn.innerText = 'pause'
+                pauseBtn.dataset.onSwitch = "true"
+
+                for (let i = 0; i < clickables.length; i++) {
+                    clickables[i].disabled = false
+                }
+                pauseBtn.removeEventListener
+                pauseBtn.addEventListener('click', pauseTimer())
+            })
+        }
+    }
+    function pauseTimer() {
+        if (pauseBtn.dataset.onSwitch === "true") {
+            pauseBtn.addEventListener('click', e => {
+                clearInterval(myVar)
+                pauseBtn.innerText = 'resume'
+                pauseBtn.dataset.onSwitch = "false"
+
+                for (let i = 0; i < clickables.length; i++) {
+                    clickables[i].disabled = true
+                }
+                pauseBtn.removeEventListener
+                resumeBtn = document.getElementById("pause").disabled = false
+                pauseBtn.addEventListener('click', resumeTimer())
+            })
+        }
+    }
+
+
+    pauseTimer()
+    resumeTimer()
+
+    let form = document.getElementById('comment-form')
+    let commentDiv = document.getElementById("list")
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        let comment = document.createElement('p')
+
+        comment.innerText = form.comment.value
+
+        commentDiv.append(comment)
+
+
+    })
+
 })
