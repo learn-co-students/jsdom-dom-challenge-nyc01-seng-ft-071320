@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
           lastLikeSent[4] = lastLikeNum
           lastLikeSent =  lastLikeSent.join(" ");
           likesContainer.lastChild.innerText = lastLikeSent
-          //likesContainer.append(li)
         } else {
           li.innerText = `${seconds} has been liked ${likesNum} times.`
           likesContainer.append(li)
@@ -48,6 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           pauseButton.innerText = 'pause'
         }
+      } else if(e.target.matches('#submit')){
+          e.preventDefault();
+          let input = document.querySelector('#comment-input')
+          let commentContainer = document.querySelector('.comments')
+          let li = document.createElement('li')
+          li.innerText = input.value
+          commentContainer.append(li)
+          input.value = null
       }
     })
 
