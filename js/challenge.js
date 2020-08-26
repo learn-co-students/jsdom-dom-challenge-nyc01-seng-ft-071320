@@ -35,7 +35,7 @@ body.addEventListener('click', function (e){
         liArray.forEach(li => {
             array.push(li.className) 
         })
-        //array = ["1"]
+    
         if (array.includes(`${time}`)) {
             let ourLi = ul.getElementsByClassName(`${time}`)[0];
             let grabbedLikes = ourLi.textContent.replace(`${time} has been liked`, "");
