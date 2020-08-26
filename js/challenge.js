@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", function(e){
+  
+  let startTime = Date.now()
+
+  const counter = document.querySelector("#counter")
+
+  function countUp() {
+    const d = new Date(Date.now() - startTime)
+    const s = d.getSeconds()
+    console.log(s)
+    counter.innerText = s
+    setTimeout(() => {
+      countUp();
+    }, 1000);
+  }
+  countUp()
+
+})
 
 
     // function secondAdder() {
@@ -25,5 +42,3 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 
 // secondAdder()
-
-})
