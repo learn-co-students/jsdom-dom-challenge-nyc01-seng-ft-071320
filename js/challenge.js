@@ -61,18 +61,19 @@ document.addEventListener("DOMContentLoaded", function(e){
     function pauseEverything(){ 
         clearTimeout(timeout)
         pauseButton.innerText = "resume"
-        buttons[0].disabled = "true"
-        buttons[1].disabled = "true"
-        buttons[2].disabled = "true"}
+        buttons[0].disabled = true
+        buttons[1].disabled = true
+        buttons[2].disabled = true}
 
     function resumeEverything() {
         let currentSecond = parseInt(counter.innerText, 10)
         startTime = Date.now()
         countUp()
         pauseButton.innerText = "pause"
-        buttons[0].disabled = "false"
-        buttons[1].disabled = "false"
-        buttons[2].disabled = "false"
+        buttons[0].disabled = false
+        buttons[1].disabled = false
+        buttons[2].disabled = false
+
     }
 
 
