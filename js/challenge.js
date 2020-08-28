@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", e => {
         document.getElementById('counter').textContent = counterTime + 1
     }
     let myVar = setInterval(incrementCounter, 1000)
+    timerGoing = true
 
 
     let plus = document.getElementById("plus")
@@ -41,46 +42,26 @@ document.addEventListener("DOMContentLoaded", e => {
     document.getElementById('heart').addEventListener("click", addLike)
 
     let pauseBtn = document.querySelector('#pause')
-    pauseBtn.dataset.onSwitch = "true"
     clickables = document.getElementsByTagName("button")
-    function resumeTimer() {
-        if (pauseBtn.dataset.onSwitch === "false") {
-            pauseBtn.addEventListener("click", e => {
-                // clearTimeout(incrementCounter)
 
-                // clearInterval(myVar)
-                myVar = setInterval(incrementCounter, 1000)
-                pauseBtn.innerText = 'pause'
-                pauseBtn.dataset.onSwitch = "true"
-
-                for (let i = 0; i < clickables.length; i++) {
-                    clickables[i].disabled = false
-                }
-
-                pauseBtn.addEventListener('click', pauseTimer())
-            })
+    pauseBtn.addEventListener('click', e=> {
+        if (timerGoing){
+            clearInterval(myVar)
+            pauseBtn.innerHTML = 'pause'
+            for(let i=0; i < clickables.length; i++){
+                clickables[i].disabled = true
+            }
+            pauseBtn.disabled = false
+            timerGoing = false
+        } else {
+            myVar = setInterval(incrementCounter, 1000)
+            pauseBtn.innerText = 'pause'
+            for(let i=0; i < clickables.length; i++){
+                clickables[i].disabled = false
+            }
+        timerGoing = true
         }
-    }
-    function pauseTimer() {
-        if (pauseBtn.dataset.onSwitch === "true") {
-            pauseBtn.addEventListener('click', e => {
-                clearInterval(myVar)
-                pauseBtn.innerText = 'resume'
-                pauseBtn.dataset.onSwitch = "false"
-
-                for (let i = 0; i < clickables.length; i++) {
-                    clickables[i].disabled = true
-                }
-
-                resumeBtn = document.getElementById("pause").disabled = false
-                pauseBtn.addEventListener('click', resumeTimer())
-            })
-        }
-    }
-
-
-    pauseTimer()
-    resumeTimer()
+    })
 
     let form = document.getElementById('comment-form')
     let commentDiv = document.getElementById("list")
@@ -95,4 +76,4 @@ document.addEventListener("DOMContentLoaded", e => {
 
     })
 
-})  //test
+}) 
